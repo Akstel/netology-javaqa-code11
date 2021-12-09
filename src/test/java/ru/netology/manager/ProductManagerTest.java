@@ -6,8 +6,7 @@ import ru.netology.domain.Product;
 import ru.netology.domain.Smartphone;
 import ru.netology.repository.ProductRepository;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ManagerTest {
     private ProductRepository repository = new ProductRepository();
@@ -42,30 +41,33 @@ class ManagerTest {
 
     @Test
     public void shouldMatchPositive() {
-        Book book = new Book(1, "book", 300, "Достоевский");
+        Book book = new Book(1, "book1", 300, "Достоевский");
         Smartphone smartphone = new Smartphone(2, "S", 10000, "Samsung");
-        boolean expected = true;
-        boolean actual = manager.matches(book, "Достоевский");
-        assertEquals(expected, actual);
+//        boolean expected = true;
+//        boolean actual = manager.matches(book, "Достоевский");
+//        assertEquals(expected, actual); поправил, да так лучше) спасибо
+        boolean actual = manager.matches(book1, "Достоевский");
+        assertTrue(actual);
+
     }
 
     @Test
     public void shouldMatchNegative() {
-        Book book = new Book(1, "book", 300, "Достоевский");
+        Book book = new Book(1, "book1", 300, "Достоевский");
         Smartphone smartphone = new Smartphone(2, "S", 10000, "Samsung");
-        boolean expected = false;
-        boolean actual = manager.matches(book, "Иванов");
-        assertEquals(expected, actual);
+//        boolean expected = false;
+//        boolean actual = manager.matches(book, "Иванов");
+//        assertEquals(expected, actual); поправил)
+        boolean actual = manager.matches(book1, "Иванов");
+        assertFalse(actual);
     }
 
     @Test
     public void shouldMatchCoverForCoverage() {
-
         Product book = new Product();
-
-        boolean expected = false;
-        boolean actual = manager.matches(book, "Иванов");
-        assertEquals(expected, actual);
+//      boolean expected = false;
+        boolean actual = manager.matches(book1, "Иванов");
+        assertFalse(actual);
     }
 
     @Test
